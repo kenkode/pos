@@ -2,16 +2,22 @@
 @extends('layouts.main')
 @section('content')
 
+<style>
+.code{
+height: 60px !important;
+}
+</style>
+
 <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Categories
+        Stocks
       </h1>
       <ol class="breadcrumb">
         <li><a href="{{URL::to('/dashboard')}}"><i class="fa fa-home"></i> Home</a></li>
-        <li class="active"> Categories</li>
+        <li class="active"> Stock</li>
       </ol>
     </section>
 
@@ -22,7 +28,7 @@
         <div class="col-xs-12">
           <div class="box box-primary">
             <div class="box-header">
-              <h3 class="box-title">Categories</h3>
+              <h3 class="box-title">Stocks</h3>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
@@ -48,23 +54,29 @@
           @endif
             <!-- /.box-header -->
             <!-- form start -->
-            <a rel="facebox" class="btn btn-info btn-sm" href="{{ URL::to('categories/create')}}">new category</a>
-            <a class="btn btn-warning btn-sm" href="{{ URL::to('categories/report')}}">Report</a>
+            <a rel="facebox" class="btn btn-info btn-sm" href="{{ URL::to('stocks/create')}}">new stock</a>
+            <a class="btn btn-warning btn-sm" href="{{ URL::to('stocks/report')}}">Report</a>
             <br><br>
             <table id="example1" class="table table-bordered table-hover">
                 <thead>
                 <tr>
                   <th>#</th>
-                  <th>Name</th>
+                  <th>Item</th>
+                  <th>Quantity In</th>
+                  <th>Quantity Out</th>
+                  <th>Date</th>
                   <th>Action</th>
                 </tr>
                 </thead>
                 <tbody>
                 <?php $i=1;?>
-                @foreach($categories as $category)
+                @foreach($stocks as $stock)
                 <tr>
                   <td>{{$i}}</td>
-                  <td>{{$category->name}}</td>
+                  <td>{{$stock->item->name}}</td>
+                  <td>{{$stock->quantity_in}}</td>
+                  <td>{{$stock->quantity_out}}</td>
+                  <td>{{date('F d, Y', strtotime($stock->date))}}</td>
                   <td>
 
                   <div class="btn-group">
@@ -73,9 +85,9 @@
                   </button>
           
                   <ul class="dropdown-menu" role="menu">
-                    <li><a rel="facebox" href="{{URL::to('categories/edit/'.$category->id)}}">Update</a></li>
-                    <li><a href="{{URL::to('categories/individual/report/'.$category->id)}}">Report</a></li>
-                    <li><a href="{{URL::to('categories/delete/'.$category->id)}}" onclick="return (confirm('Are you sure you want to delete this category?'))">Delete</a></li>
+                    <li><a rel="facebox" href="{{URL::to('stocks/edit/'.$stock->id)}}">Update</a></li>
+                    <li><a href="{{URL::to('stocks/individual/report/'.$stock->id)}}">Report</a></li>
+                    <li><a href="{{URL::to('stocks/delete/'.$stock->id)}}" onclick="return (confirm('Are you sure you want to delete this stock?'))">Delete</a></li>
                   </ul>
               </div>
 

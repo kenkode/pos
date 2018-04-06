@@ -51,3 +51,24 @@ Route::post('/products/update/{id}', 'ItemsController@update');
 Route::get('/products/delete/{id}', 'ItemsController@destroy');
 Route::get('/products/barcode/{id}', 'ItemsController@barcode');
 Route::post('/products/barcode/{id}', 'ItemsController@displaybarcode');
+
+/*items*/
+Route::get('/stocks', 'StocksController@index');
+Route::get('/stocks/create', 'StocksController@create');
+Route::post('/stocks/store', 'StocksController@store');
+Route::get('/stocks/edit/{id}', 'StocksController@edit');
+Route::post('/stocks/update/{id}', 'StocksController@update');
+Route::get('/stocks/delete/{id}', 'StocksController@destroy');
+
+/*profile*/
+Route::get('profile', 'ProfileController@index');
+Route::get('profile/edit/{id}', 'ProfileController@edit');
+Route::get('profile/editpassword/{id}', 'ProfileController@editpassword');
+Route::post('profile/update/{id}', 'ProfileController@update');
+Route::post('profile/updatepassword/{id}', 'ProfileController@updatepassword');
+
+/*organization*/
+Route::get('organizations', 'OrganizationsController@index');
+Route::post('organizations/update/{id}', 'OrganizationsController@update');
+Route::get('settings', 'OrganizationsController@settings');
+Route::post('settings/update/{id}', 'OrganizationsController@settingsupdate');

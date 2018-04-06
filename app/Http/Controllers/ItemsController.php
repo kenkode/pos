@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Redirect;
 use App\Item;
 use App\Client;
+use App\Stock;
 
 class ItemsController extends Controller
 {
@@ -92,8 +93,13 @@ class ItemsController extends Controller
     }
 
     public function destroy($id){
+        $stocks = Stock::where('item_id',$id)->count();
+        if($stocks > 0){
+        return Redirect::to('/products')->withDeleteMessage('That item cannot be deleted because it`s linked to a stock!');
+        }else{
         Item::destroy($id);
         return Redirect::to('/products')->withFlashMessage('Product successfully deleted!');
+    }
     }
 
 }

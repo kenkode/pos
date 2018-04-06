@@ -103,7 +103,7 @@
 
         @if($bar == "stocks")
         <li class="active">
-          <a href="{{URL::to('/')}}">
+          <a href="{{URL::to('/stocks')}}">
             <i class="fa fa-tags"></i> <span>Stocks</span>
             
           </a>
@@ -111,7 +111,7 @@
         </li>
         @else
         <li>
-          <a href="{{URL::to('/')}}">
+          <a href="{{URL::to('/stocks')}}">
             <i class="fa fa-tags"></i> <span>Stocks</span>
             
           </a>
@@ -137,7 +137,7 @@
           </ul>
         </li>
        
-       @if($bar == "system" || $bar == "organizations")
+       @if($bar == "settings" || $bar == "organizations")
         <li class="active treeview">
        @else
         <li class="treeview">
@@ -154,10 +154,10 @@
             @else
             <li><a href="{{URL::to('/organizations')}}"><i class="fa fa-circle-o"></i> Organization Settings</a></li>
             @endif
-            @if($bar == "audits")
-            <li class="active"><a href="{{URL::to('/audits')}}"><i class="fa fa-circle-o"></i> General Settings</a></li>
+            @if($bar == "settings")
+            <li class="active"><a href="{{URL::to('/settings')}}"><i class="fa fa-circle-o"></i> General Settings</a></li>
             @else
-            <li><a href="{{URL::to('/audits')}}"><i class="fa fa-circle-o"></i>General Settings</a></li>
+            <li><a href="{{URL::to('/settings')}}"><i class="fa fa-circle-o"></i>General Settings</a></li>
             @endif
             <!-- <li><a href="#"><i class="fa fa-circle-o"></i> Loan Products</a></li> -->
           </ul>
