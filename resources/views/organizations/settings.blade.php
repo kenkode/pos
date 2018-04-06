@@ -75,7 +75,7 @@
                 </div>
 
                 <div class="form-group">
-                  <label for="exampleInputEmail1">VAT Percentage(%) </label>
+                  <label for="exampleInputEmail1">VAT Percentage (%) </label>
                   <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter VAT Percentage" value="{{$organization->vat}}" name="vat" >
                 </div>
 
