@@ -261,7 +261,7 @@ function grandTotal(){
 
 function balance(){
 setTimeout(function() {
- var total = document.getElementById("grand").value.replace(/,/g,'');
+ var total = document.getElementById("payable").value.replace(/,/g,'');
  var amount_paid = document.getElementById("amount_paid").value.replace(/,/g,'');
  
  var change = parseFloat(amount_paid) - parseFloat(total);
