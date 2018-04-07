@@ -83,7 +83,7 @@ class OrdersController extends Controller
             $stock = new Stock;
 
             $stock->date = date("Y-m-d");
-            //$stock->item_id=$item;
+            $stock->order_id=$order->id;
             $stock->item_id=$item['itemid'];
             $stock->quantity_out = $item['quantity'];
             $stock->user_id = Auth::user()->id;
