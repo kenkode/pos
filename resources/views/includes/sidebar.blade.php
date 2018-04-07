@@ -85,7 +85,7 @@
           
         @if($bar == "sales")
         <li class="active">
-          <a href="{{URL::to('/')}}">
+          <a href="{{URL::to('/sales')}}">
             <i class="fa fa-shopping-cart"></i> <span>Sales</span>
             
           </a>
@@ -93,7 +93,7 @@
         </li>
         @else
         <li>
-          <a href="{{URL::to('/')}}">
+          <a href="{{URL::to('/sales')}}">
             <i class="fa fa-shopping-cart"></i> <span>Sales</span>
             
           </a>

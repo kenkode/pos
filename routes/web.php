@@ -72,3 +72,11 @@ Route::get('organizations', 'OrganizationsController@index');
 Route::post('organizations/update/{id}', 'OrganizationsController@update');
 Route::get('settings', 'OrganizationsController@settings');
 Route::post('settings/update/{id}', 'OrganizationsController@settingsupdate');
+
+/*orders*/
+Route::get('sales', 'OrdersController@index');
+Route::post('sales/create', 'OrdersController@create');
+Route::post('sales/store', 'OrdersController@store');
+Route::get('orderitems/edit/{id}', 'OrdersController@edit');
+Route::post('orderitems/edit/{id}', 'OrdersController@update');
+Route::get('orderitems/remove/{id}', 'OrdersController@remove');

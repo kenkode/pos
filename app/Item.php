@@ -21,4 +21,9 @@ class Item extends Model
 
 		return $this->hasMany('App\Stock');
 	}
+
+	public function orderitem(){
+
+		return $this->belongsTo('App\Orderitem');
+	}
 }
