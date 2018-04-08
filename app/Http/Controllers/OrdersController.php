@@ -90,7 +90,7 @@ class OrdersController extends Controller
             $stock->save();
           }
  
-        return Redirect::to('/sales')->withFlashMessage('Sale successfully completed!');
+        return Redirect::to('/receipt/'.$order->id);
     }
 
     public function show($id){

@@ -17,6 +17,11 @@ class Item extends Model
 		return $this->belongsTo('App\Client');
 	}
 
+	public function user(){
+
+		return $this->belongsTo('App\User');
+	}
+
 	public function stock(){
 
 		return $this->hasMany('App\Stock');
@@ -24,6 +29,6 @@ class Item extends Model
 
 	public function orderitem(){
 
-		return $this->belongsTo('App\Orderitem');
+		return $this->hasMany('App\Orderitem');
 	}
 }

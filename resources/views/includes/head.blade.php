@@ -40,6 +40,7 @@
   <script src="{{asset('public/bower_components/jquery/dist/jquery.min.js')}}"></script>
   <script src="{{asset('public/js/price_format.js')}}"></script>
 
+
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
@@ -121,7 +122,7 @@
                   <li>
                     <a href="#">
                       <div class="pull-left">
-                        <img src="dist/img/user3-128x128.jpg" class="img-circle" alt="User Image">
+                        <img src="{{asset('public/dist/img/user3-128x128.jpg')}}" class="img-circle" alt="User Image">
                       </div>
                       <h4>
                         Sales Department
@@ -271,9 +272,9 @@
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               @if(Auth::user()->image == null)
-              <img src="{{asset('public/uploads/avatar.png')}}" class="user-image" alt="User Image">
+              <img src="{{asset('public/uploads/user.png')}}" class="user-image" alt="User Image">
               @else
-              <img src="{{asset('public/uploads/users/'.Auth::user()->image)}}" class="user-image" alt="User Image">
+              <img src="{{asset('public/uploads/user.png')}}" class="user-image" alt="User Image">
               @endif
               <span class="hidden-xs">{{strtoupper(Auth::user()->name)}}</span>
             </a>
@@ -281,9 +282,9 @@
               <!-- User image -->
               <li class="user-header">
               @if(Auth::user()->image == null)
-              <img src="{{asset('public/uploads/avatar.png')}}" class="img-circle" alt="User Image">
+              <img src="{{asset('public/uploads/user.png')}}" class="img-circle" alt="User Image">
               @else
-              <img src="{{asset('public/uploads/users/'.Auth::user()->image)}}" class="img-circle" alt="User Image">
+              <img src="{{asset('public/uploads/user.png')}}" class="img-circle" alt="User Image">
               @endif
                 <p>
                   {{strtoupper(Auth::user()->name)}}

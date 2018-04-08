@@ -6,9 +6,9 @@
       <div class="user-panel">
         <div class="pull-left image">
           @if(Auth::user()->image == null)
-              <img src="{{asset('public/uploads/avatar.png')}}" class="img-circle" alt="User Image">
+              <img src="{{asset('public/uploads/user.png')}}" class="img-circle" alt="User Image">
               @else
-              <img src="{{asset('public/uploads/users/'.Auth::user()->image)}}" style="width:100px;height:50px;" class="img-circle" alt="User Image">
+              <img src="{{asset('public/uploads/user.png')}}" style="width:100px;height:50px;" class="img-circle" alt="User Image">
               @endif
         </div>
         <div class="pull-left info">
@@ -119,7 +119,11 @@
         </li>
         @endif
 
+        @if($bar == "sales report" || $bar == "stocks report")
+        <li class="active treeview">
+       @else
         <li class="treeview">
+       @endif
           <a href="#">
             <i class="fa fa-files-o"></i>
             <span>Reports</span>
@@ -128,11 +132,15 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="#"><i class="fa fa-circle-o"></i> Items </a></li>
-            <li><a href="#"><i class="fa fa-circle-o"></i> Item Categories</a></li>
-            <li><a href="#"><i class="fa fa-circle-o"></i> Suppliers</a></li>
+            <li><a target="_blank" href="{{URL::to('/reports/items')}}"><i class="fa fa-circle-o"></i> Items </a></li>
+            <li><a target="_blank" href="{{URL::to('/reports/categories')}}"><i class="fa fa-circle-o"></i> Item Categories</a></li>
+            <li><a target="_blank" href="{{URL::to('/reports/suppliers')}}"><i class="fa fa-circle-o"></i> Suppliers</a></li>
             <li><a href="#"><i class="fa fa-circle-o"></i> Stocks</a></li>
-            <li><a href="#"><i class="fa fa-circle-o"></i> Sales</a></li>
+            @if($bar == "sales report")
+            <li class="active"><a rel="facebox" href="{{URL::to('/reports/sales')}}"><i class="fa fa-circle-o"></i> Sales</a></li>
+            @else
+            <li><a href="{{URL::to('/reports/sales')}}"><i class="fa fa-circle-o"></i> Sales</a></li>
+            @endif
             <li><a href="#"><i class="fa fa-circle-o"></i> Users</a></li>
           </ul>
         </li>

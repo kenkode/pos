@@ -66,7 +66,7 @@
 
                 <div class="form-group">
                   <label for="exampleInputEmail1">KRA ETR </label>
-                  <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter VAT Percentage" value="{{$organization->kra_etr}}" name="kra_etr" >
+                  <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter KRA ETR" value="{{$organization->kra_etr}}" name="kra_etr" >
                 </div>
 
                 <div class="form-group">

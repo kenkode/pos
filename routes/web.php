@@ -80,3 +80,12 @@ Route::post('sales/store', 'OrdersController@store');
 Route::get('orderitems/edit/{id}', 'OrdersController@edit');
 Route::post('orderitems/edit/{id}', 'OrdersController@update');
 Route::get('orderitems/remove/{id}', 'OrdersController@remove');
+
+/*reports*/
+Route::get('reports/items', 'ReportsController@items');
+Route::get('reports/categories', 'ReportsController@categories');
+Route::get('reports/suppliers', 'ReportsController@suppliers');
+Route::get('products/individual/report/{id}', 'ReportsController@singleproduct');
+Route::get('reports/sales', 'ReportsController@salesperiod');
+Route::post('reports/sales', 'ReportsController@sales');
+Route::get('receipt/{id}', 'ReportsController@receipt');

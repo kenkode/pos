@@ -99,6 +99,11 @@
                 </div>
 
                 <div class="form-group">
+                  <label for="exampleInputEmail1">Phone </label>
+                  <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Organization Phone" value="{{$organization->phone}}" name="phone" >
+                </div>
+
+                <div class="form-group">
                   <label for="exampleInputEmail1">Organization Email </label>
                   <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Organization Email" value="{{$organization->email}}" name="email" >
                 </div>
@@ -106,11 +111,6 @@
                 <div class="form-group">
                   <label for="exampleInputEmail1">Organization Address </label>
                   <textarea class="form-control" name="address" rows="3" placeholder="Enter Organization Address...">{{$organization->address}}</textarea>
-                </div>
-
-                <div class="form-group">
-                  <label for="exampleInputEmail1">Website </label>
-                  <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Organization Website" value="{{$organization->website}}" name="website" >
                 </div>
 
                 
