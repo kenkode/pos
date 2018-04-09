@@ -12,6 +12,7 @@ use App\Client;
 use App\Order;
 use App\Orderitem;
 use App\Organization;
+use App\User;
 use PDF;
 
 class ReportsController extends Controller
@@ -90,6 +91,31 @@ class ReportsController extends Controller
         PDF::AddPage('L');
         PDF::writeHTML($html, true, false, true, false, '');
         PDF::Output('suppliers.pdf');
+    }
+
+    public function users(){
+        $users = User::orderBy('id','DESC')->get();
+        $bar = "reports";
+        $organization = Organization::find(1);
+        $view = \View::make('reports.users',compact('users','organization','f','t'));
+        $html = $view->render();
+
+        PDF::setFooterCallback(function($pdf) {
+
+        // Position at 15 mm from bottom
+        $pdf->SetY(-15);
+        // Set font
+        $pdf->SetFont('helvetica', 'I', 8);
+        // Page number
+        $pdf->Cell(0, 10, 'Page '.$pdf->getAliasNumPage().'/'.$pdf->getAliasNbPages(), 0, false, 'C', 0, '', 0, false, 'T', 'M');
+
+        });
+
+        //$pdf = new TCPDF();
+        PDF::SetTitle('Users');
+        PDF::AddPage('P');
+        PDF::writeHTML($html, true, false, true, false, '');
+        PDF::Output('Users.pdf');
     }
 
     public function salesperiod(){

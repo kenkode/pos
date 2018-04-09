@@ -20,6 +20,7 @@
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">MAIN NAVIGATION</li>
+        @if(Auth::user()->type == "Admin")
         @if($bar == "dashboard")
         <li class="active">
           <a href="{{URL::to('/')}}">
@@ -141,7 +142,7 @@
             @else
             <li><a href="{{URL::to('/reports/sales')}}"><i class="fa fa-circle-o"></i> Sales</a></li>
             @endif
-            <li><a href="#"><i class="fa fa-circle-o"></i> Users</a></li>
+            <li><a target="_blank" href="{{URL::to('/reports/users')}}"><i class="fa fa-circle-o"></i> Users</a></li>
           </ul>
         </li>
        
@@ -195,7 +196,25 @@
             @endif
           </ul>
         </li>
-
+        @else
+        @if($bar == "sales")
+        <li class="active">
+          <a href="{{URL::to('/sales')}}">
+            <i class="fa fa-shopping-cart"></i> <span>Sales</span>
+            
+          </a>
+          
+        </li>
+        @else
+        <li>
+          <a href="{{URL::to('/sales')}}">
+            <i class="fa fa-shopping-cart"></i> <span>Sales</span>
+            
+          </a>
+          
+        </li>
+        @endif
+        @endif
         @if($bar == "profile")
          <li class="active">
         @else

@@ -11,19 +11,36 @@
 |
 */
 
-Route::get('/', function () {
+Route::get('/home', function () {
 	if (Auth::user()) {
-
-        return Redirect::to("/home");
+    if (Auth::user()->type == "Admin"){
+        return Redirect::to("/dashboard");
+    }else{
+    	return Redirect::to("/sales");
+    }
 
     } else {
         return view('auth.login');
     }
 });
 
+Route::get('/', function () {
+	if (Auth::user()) {
+    if (Auth::user()->type == "Admin"){
+        return Redirect::to("/dashboard");
+    }else{
+    	return Redirect::to("/sales");
+    }
+
+    } else {
+        return view('auth.login');
+    }
+});
+
+
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/dashboard', 'HomeController@index')->name('home');
 
 /*suppliers*/
 Route::get('/suppliers', 'ClientsController@index');
@@ -89,3 +106,15 @@ Route::get('products/individual/report/{id}', 'ReportsController@singleproduct')
 Route::get('reports/sales', 'ReportsController@salesperiod');
 Route::post('reports/sales', 'ReportsController@sales');
 Route::get('receipt/{id}', 'ReportsController@receipt');
+Route::get('reports/users', 'ReportsController@users');
+
+/*users*/
+Route::get('users', 'UsersController@index');
+Route::get('users/create', 'UsersController@create');
+Route::post('users/store', 'UsersController@store');
+Route::get('users/edit/{id}', 'UsersController@edit');
+Route::get('users/show/{id}', 'UsersController@show');
+Route::post('users/update/{id}', 'UsersController@update');
+Route::get('users/deactivate/{id}', 'UsersController@deactivate');
+Route::get('users/inactives', 'UsersController@inactives');
+Route::get('users/activate/{id}', 'UsersController@activate');
