@@ -201,7 +201,7 @@ height: 60px !important;
 </div>
 
 <br>
-<form method="post" action="{{URL::to('sales/store')}}">
+<form id="subform" method="post" action="{{URL::to('sales/store')}}">
    {{ csrf_field() }} 
 <table border="0" align="right" style="width:400px">
 <!-- <tr style="height:50px"><td>Order Discount:</td><td colspan="2"> <input type="text" name="discount" id="discount" onkeypress="grandTotal()" onkeyup="grandTotal()" onblur="grandTotal()" value="0" class="form-control"></td></tr> -->
@@ -250,7 +250,7 @@ $(document).ready(function(){
 
    <!--  <div class="panel-heading"> -->
           <a class="btn btn-danger btn-sm" href="{{ URL::to('sales')}}">Cancel </a>
-        <!-- </div> --><input type="submit" onclick="checkAmount()" class="btn btn-primary pull-right" value="Pay"/>
+        <!-- </div> --><input type="submit" class="btn btn-primary pull-right" value="Pay"/>
 
  </div>
 
@@ -260,6 +260,15 @@ $(document).ready(function(){
  </form>
 
 <script type="text/javascript">
+$(document).ready(function(){
+$('#subform').submit(function (event) {
+if(parseFloat($('#change').val())<0){
+alert("Amount provided is less than the total amount");
+
+event.preventDefault();
+}
+});
+});
 
 function checkAmount(){
   var change = document.getElementById("change").value;
