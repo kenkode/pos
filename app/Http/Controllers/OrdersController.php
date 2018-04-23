@@ -29,7 +29,11 @@ class OrdersController extends Controller
         $item = Item::findOrFail($request->item);
 
           $item_name = $item->name;
-          $price = $item->selling_price;
+          if($request->type == 'Wholesale'){
+          $price = $item->wholesale_price;
+          }else{
+           $price = $item->retail_price; 
+          }
           $quantity = $request->quantity;
           $item_id = $item->id;
 
@@ -37,7 +41,8 @@ class OrdersController extends Controller
               'itemid' => $item_id,
               'item' => $item_name,
               'price' => $price,
-              'quantity' => $quantity
+              'quantity' => $quantity,
+              'mode' => $request->type
             ]);
 
         $orderitems = Session::get('orderitems');
@@ -77,6 +82,7 @@ class OrdersController extends Controller
             $orderitem->item_id=$item['itemid'];
             $orderitem->price = $item['price'];
             $orderitem->quantity = $item['quantity'];
+            $orderitem->mode = $item['mode'];
             $orderitem->save();
 
 
@@ -90,6 +96,7 @@ class OrdersController extends Controller
             $stock->save();
           }
  
+        return Redirect::to('/sales')->withFlashMessage('Sale Successfully completed! Start a new sale');
         return Redirect::to('/receipt/'.$order->id);
     }
 

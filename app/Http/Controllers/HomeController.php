@@ -7,6 +7,7 @@ use App\Order;
 use App\Item;
 use App\Client;
 use App\User;
+use App\Stock;
 
 class HomeController extends Controller
 {
@@ -34,4 +35,5 @@ class HomeController extends Controller
         $users = User::count();
         return view('home',compact('bar','sales','products','suppliers','users'));
     }
+
 }

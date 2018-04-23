@@ -64,7 +64,8 @@ height: 60px !important;
                   <th>Name</th>
                   <th>Barcode</th>
                   <th>Buying Price</th>
-                  <th>Selling Price</th>
+                  <th>Retail Price</th>
+                  <th>Wholesale Price</th>
                   <th>Expiry Date</th>
                   <th>Date Purchased</th>
                   <th>Category</th>
@@ -80,7 +81,8 @@ height: 60px !important;
                   <td>{{$product->name}}</td>
                   <td>{!! DNS1D::getBarcodeHTML($product->code, "C128" ,1,13)!!}</td>
                   <td>{{number_format($product->buying_price,2)}}</td>
-                  <td>{{number_format($product->selling_price,2)}}</td>
+                  <td>{{number_format($product->retail_price,2)}}</td>
+                  <td>{{number_format($product->wholesale_price,2)}}</td>
                   <td>{{date('F d, Y', strtotime($product->expiry_date))}}</td>
                   <td>{{date('F d, Y', strtotime($product->date))}}</td>
                   <td>{{$product->category->name}}</td>

@@ -63,7 +63,8 @@
         <td><strong>Category </strong></td>
         <td><strong>Supplier </strong></td>
         <td><strong>Buying Price </strong></td>
-        <td><strong>Selling Price </strong></td>
+        <td><strong>Retail Price </strong></td>
+        <td><strong>Wholesale Price </strong></td>
         <td><strong>Date Purchased </strong></td>
         <td><strong>Expiry Date </strong></td>
         <td><strong>Inserted By </strong></td>
@@ -80,7 +81,8 @@
         <td>{{$item->category->name}}</td>
         <td>{{$item->client->name}}</td>
         <td>{{number_format($item->buying_price,2)}}</td>
-        <td>{{number_format($item->selling_price,2)}}</td>
+        <td>{{number_format($item->retail_price,2)}}</td>
+         <td>{{number_format($item->wholesale_price,2)}}</td>
         <td>{{date('F d, Y', strtotime($item->date))}}</td>
         <td>{{date('F d, Y', strtotime($item->expiry_date))}}</td>
         <td>{{$item->user->name}}</td>

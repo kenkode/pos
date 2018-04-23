@@ -76,6 +76,7 @@ Route::post('/stocks/store', 'StocksController@store');
 Route::get('/stocks/edit/{id}', 'StocksController@edit');
 Route::post('/stocks/update/{id}', 'StocksController@update');
 Route::get('/stocks/delete/{id}', 'StocksController@destroy');
+Route::get('/reordercheck', 'StocksController@reorderCheck');
 
 /*profile*/
 Route::get('profile', 'ProfileController@index');
@@ -97,6 +98,11 @@ Route::post('sales/store', 'OrdersController@store');
 Route::get('orderitems/edit/{id}', 'OrdersController@edit');
 Route::post('orderitems/edit/{id}', 'OrdersController@update');
 Route::get('orderitems/remove/{id}', 'OrdersController@remove');
+Route::get('view/sales', 'SalesController@index');
+Route::get('reverse/sales', 'SalesController@index');
+Route::get('reverse/order/{id}', 'SalesController@reverseOrder');
+Route::get('return/order/{id}', 'SalesController@returnOrder');
+Route::get('sales/show/{id}', 'SalesController@show');
 
 /*reports*/
 Route::get('reports/items', 'ReportsController@items');
@@ -107,6 +113,8 @@ Route::get('reports/sales', 'ReportsController@salesperiod');
 Route::post('reports/sales', 'ReportsController@sales');
 Route::get('receipt/{id}', 'ReportsController@receipt');
 Route::get('reports/users', 'ReportsController@users');
+Route::get('reports/stocks', 'ReportsController@stocksperiod');
+Route::post('reports/stocks', 'ReportsController@stocks');
 
 /*users*/
 Route::get('users', 'UsersController@index');

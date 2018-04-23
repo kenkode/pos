@@ -90,6 +90,17 @@ height: 60px !important;
             <input type="text" name="quantity" id="quantity" class="form-control" required>
         </div>
 
+         <div class="form-group ">
+            <label>Type</label><span style="color:red">*</span> :
+            <select name="type" id="type" class="form-control select2" required>
+            
+            <option> </option>
+            <option> ..... select type....</option>
+            <option value="Wholesale">Wholesale</option>
+            <option value="Retail">Retail</option>
+            </select>
+        </div>
+
             <input type="hidden" name="qty" id="qty" class="form-control" required>
 
 
@@ -122,6 +133,7 @@ height: 60px !important;
     <thead>
         <th>Index</th>
         <th>Item</th>
+        <th>Sale Type</th>
         <th>Quantity</th>
         <th>Price</th>
         <th>Total Amount</th>
@@ -153,6 +165,7 @@ height: 60px !important;
         <tr>
             <td>{{$count+1}}</td>
             <td>{{$orderitem['item']}}</td>
+            <td>{{$orderitem['mode']}}</td>
             <td>{{$orderitem['quantity']}}</td>
             <td>{{asMoney($orderitem['price'])}}</td>  
             <td>{{asMoney($total_amount)}}</td>
@@ -237,7 +250,7 @@ $(document).ready(function(){
 
    <!--  <div class="panel-heading"> -->
           <a class="btn btn-danger btn-sm" href="{{ URL::to('sales')}}">Cancel </a>
-        <!-- </div> --><input type="submit" class="btn btn-primary pull-right" value="Pay"/>
+        <!-- </div> --><input type="submit" onclick="checkAmount()" class="btn btn-primary pull-right" value="Pay"/>
 
  </div>
 
@@ -247,6 +260,16 @@ $(document).ready(function(){
  </form>
 
 <script type="text/javascript">
+
+function checkAmount(){
+  var change = document.getElementById("change").value;
+  if(parseFloat(change)<0){
+    alert("Amount provided is less than the total amount");
+    return false;
+  }
+ console.log(change);
+ document.getElementById("change").value=change.toLocaleString('en-US',{minimumFractionDigits: 2});
+}
 function grandTotal(){
  var payable = document.getElementById("payable").value;
  var tax = 0;
@@ -265,8 +288,10 @@ setTimeout(function() {
  var amount_paid = document.getElementById("amount_paid").value.replace(/,/g,'');
  
  var change = parseFloat(amount_paid) - parseFloat(total);
+ 
  console.log(change);
  document.getElementById("change").value=change.toLocaleString('en-US',{minimumFractionDigits: 2});
+
 },100);
 }
 </script>

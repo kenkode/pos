@@ -24,6 +24,30 @@ class StocksController extends Controller
         return view('stocks.create',compact('items','bar'));
     }
 
+    public function reorderCheck(){
+        $items = Item::all();
+        $data = array();
+        foreach ($items as $item) {
+          $check = Stock::check($item->id);
+          if($check == 1){
+            /*$data["message"] = "Stock for item ".$item->name." is almost out. ".Stock::stockRemaining($item->id)." item remaining";
+            $data["status"]  = 1;*/
+            array_push($data,array(
+            "message"=>"Stock for item ".$item->name." is almost out. ".Stock::stockRemaining($item->id)." item remaining",
+            "status"=>1
+            ));
+
+          }else{
+           // $data["status"]  = 0;
+            array_push($data,array(
+            "status"=>0
+            ));
+          }
+        }
+        
+        return json_encode($data);
+    }
+
     public function store(Request $request){
 
         $stock = new Stock;

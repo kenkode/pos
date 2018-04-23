@@ -151,6 +151,39 @@ class ReportsController extends Controller
         PDF::Output('sales_'.$from.'_'.$to.'.pdf');
     }
 
+    public function stocksperiod(){
+        $bar  = "stock report";
+        return view('reports.stocksperiod',compact('bar'));
+    }
+
+    public function stocks(Request $request){
+
+        $from = date('Y-m-d', strtotime($request->from));
+        $to = date('Y-m-d', strtotime($request->to));
+
+        $items = Item::orderBy('id','DESC')->get();
+        $organization = Organization::find(1);
+        $view = \View::make('reports.stocks',compact('items','organization','from','to'));
+        $html = $view->render();
+
+        PDF::setFooterCallback(function($pdf) {
+
+        // Position at 15 mm from bottom
+        $pdf->SetY(-15);
+        // Set font
+        $pdf->SetFont('helvetica', 'I', 8);
+        // Page number
+        $pdf->Cell(0, 10, 'Page '.$pdf->getAliasNumPage().'/'.$pdf->getAliasNbPages(), 0, false, 'C', 0, '', 0, false, 'T', 'M');
+
+        });
+
+        //$pdf = new TCPDF();
+        PDF::SetTitle('Stocks');
+        PDF::AddPage('L');
+        PDF::writeHTML($html, true, false, true, false, '');
+        PDF::Output('stocks_'.$from.'_'.$to.'.pdf');
+    }
+
     public function receipt($id){
         
         $orderitems = Orderitem::where('order_id', $id)->get();

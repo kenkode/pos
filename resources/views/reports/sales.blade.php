@@ -61,10 +61,10 @@
                   <td><strong>Payment Method</strong></td>
                   <td><strong>Till Number</strong></td>
                   <td><strong>Inserted By</strong></td>
-
       </tr>
       <?php $i=1; $total = 0;?>
                 @foreach($orders as $order)
+                @if($order->status == 0)
                 <?php $total = $total + $order->amount; ?>
                 
                 <tr>
@@ -81,6 +81,7 @@
                   
                 </tr>
                 <?php $i++;?>
+                @endif
                 @endforeach
                 <tr>
                     <td></td>

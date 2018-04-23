@@ -2,6 +2,21 @@
 
 @section('content')
 
+<script type="text/javascript">
+  $(document).ready(function(){
+    $.getJSON("{{ url('reordercheck')}}", 
+        function(data) {
+            console.log(data);
+            for(var i=0;i<data.length;i++){
+            if(data[i].status == 1){
+               alert(data[i].message);
+             }
+             }
+            });
+            
+  });
+</script>
+
 <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->

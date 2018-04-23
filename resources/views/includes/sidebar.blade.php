@@ -102,6 +102,24 @@
         </li>
         @endif
 
+        @if($bar == "view sales")
+        <li class="active">
+          <a href="{{URL::to('/view/sales')}}">
+            <i class="fa fa-list"></i> <span>View Sales</span>
+            
+          </a>
+          
+        </li>
+        @else
+        <li>
+          <a href="{{URL::to('/view/sales')}}">
+            <i class="fa fa-list"></i> <span>View Sales</span>
+            
+          </a>
+          
+        </li>
+        @endif
+
         @if($bar == "stocks")
         <li class="active">
           <a href="{{URL::to('/stocks')}}">
@@ -136,7 +154,11 @@
             <li><a target="_blank" href="{{URL::to('/reports/items')}}"><i class="fa fa-circle-o"></i> Items </a></li>
             <li><a target="_blank" href="{{URL::to('/reports/categories')}}"><i class="fa fa-circle-o"></i> Item Categories</a></li>
             <li><a target="_blank" href="{{URL::to('/reports/suppliers')}}"><i class="fa fa-circle-o"></i> Suppliers</a></li>
-            <li><a href="#"><i class="fa fa-circle-o"></i> Stocks</a></li>
+            @if($bar == "sales report")
+            <li class="active"><a href="{{URL::to('/reports/stocks')}}"><i class="fa fa-circle-o"></i> Stocks</a></li>
+            @else
+            <li><a href="{{URL::to('/reports/stocks')}}"><i class="fa fa-circle-o"></i> Stocks</a></li>
+            @endif
             @if($bar == "sales report")
             <li class="active"><a rel="facebox" href="{{URL::to('/reports/sales')}}"><i class="fa fa-circle-o"></i> Sales</a></li>
             @else
@@ -209,6 +231,23 @@
         <li>
           <a href="{{URL::to('/sales')}}">
             <i class="fa fa-shopping-cart"></i> <span>Sales</span>
+            
+          </a>
+          
+        </li>
+        @endif
+        @if($bar == "reverse sales")
+        <li class="active">
+          <a href="{{URL::to('/reverse/sales')}}">
+            <i class="fa fa-list"></i> <span>Reverse Sales</span>
+            
+          </a>
+          
+        </li>
+        @else
+        <li>
+          <a href="{{URL::to('/reverse/sales')}}">
+            <i class="fa fa-list"></i> <span>Reverse Sales</span>
             
           </a>
           

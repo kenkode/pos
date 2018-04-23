@@ -11,10 +11,16 @@
                    $('#buying_price').priceFormat();
                    });
                   </script>
-<span>Selling Price : </span><input type="text" style="width:265px; height:30px;" name="selling_price" id="selling_price"/><br>
+<span>Retail Price : </span><input type="text" style="width:265px; height:30px;" name="retail_price" id="retail_price"/><br>
 <script type="text/javascript">
                    $(document).ready(function() {
-                   $('#selling_price').priceFormat();
+                   $('#retail_price').priceFormat();
+                   });
+                  </script>
+<span>Wholesale Price : </span><input type="text" style="width:265px; height:30px;" name="wholesale_price" id="wholesale_price"/><br>
+<script type="text/javascript">
+                   $(document).ready(function() {
+                   $('#wholesale_price').priceFormat();
                    });
                   </script>
 <span>Category : </span><select name="category" class="select2" required="" style="width:265px; height:30px;" >

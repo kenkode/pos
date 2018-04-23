@@ -38,7 +38,8 @@ class ItemsController extends Controller
         $item->code            = sprintf("%06d", 1);
         }
         $item->buying_price    = str_replace(',','',$request->buying_price);
-        $item->selling_price   = str_replace(',','',$request->selling_price);
+        $item->retail_price    = str_replace(',','',$request->retail_price);
+        $item->wholesale_price = str_replace(',','',$request->wholesale_price);
         $item->client_id       = $request->supplier;
         $item->category_id     = $request->category;
         $item->expiry_date     = date('Y-m-d',strtotime(date('Y-m-d',strtotime($request->expiry_date))));
@@ -81,7 +82,8 @@ class ItemsController extends Controller
 
         $item->name            = $request->name;
         $item->buying_price    = $request->buying_price;
-        $item->selling_price   = $request->selling_price;
+        $item->retail_price    = str_replace(',','',$request->retail_price);
+        $item->wholesale_price = str_replace(',','',$request->wholesale_price);
         $item->client_id       = $request->supplier;
         $item->category_id     = $request->category;
         $item->expiry_date     = $request->expiry_date;
