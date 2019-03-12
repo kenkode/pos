@@ -96,7 +96,7 @@ class OrdersController extends Controller
             $stock->save();
           }
  
-        return Redirect::to('/sales')->withFlashMessage('Sale Successfully completed! Start a new sale');
+        // return Redirect::to('/sales')->withFlashMessage('Sale Successfully completed! Start a new sale');
         return Redirect::to('/receipt/'.$order->id);
     }
 

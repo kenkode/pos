@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.4.1deb2ubuntu2.1
--- http://www.phpmyadmin.net
+-- version 4.7.4
+-- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Mar 12, 2019 at 10:06 AM
--- Server version: 5.7.25-0ubuntu0.16.04.2
--- PHP Version: 7.0.33-0ubuntu0.16.04.2
+-- Host: 127.0.0.1
+-- Generation Time: Mar 12, 2019 at 03:50 PM
+-- Server version: 10.1.30-MariaDB
+-- PHP Version: 7.2.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -81,6 +83,8 @@ CREATE TABLE `items` (
   `client_id` int(11) NOT NULL,
   `buying_price` float(15,2) NOT NULL,
   `selling_price` float(15,2) NOT NULL,
+  `retail_price` float(15,2) DEFAULT NULL,
+  `wholesale_price` float(15,2) DEFAULT NULL,
   `expiry_date` date NOT NULL,
   `date` date NOT NULL,
   `user_id` int(11) NOT NULL,
@@ -92,9 +96,9 @@ CREATE TABLE `items` (
 -- Dumping data for table `items`
 --
 
-INSERT INTO `items` (`id`, `category_id`, `name`, `code`, `client_id`, `buying_price`, `selling_price`, `expiry_date`, `date`, `user_id`, `created_at`, `updated_at`) VALUES
-(1, 1, '1Kg Rice', '000001', 1, 150.00, 200.00, '2019-04-10', '2018-04-06', 1, '2018-04-06 06:47:30', '2018-04-06 06:47:30'),
-(2, 1, '2kg Flour', '000002', 1, 100.00, 180.00, '2019-04-10', '2018-04-06', 1, '2018-04-06 06:48:23', '2018-04-06 06:48:23');
+INSERT INTO `items` (`id`, `category_id`, `name`, `code`, `client_id`, `buying_price`, `selling_price`, `retail_price`, `wholesale_price`, `expiry_date`, `date`, `user_id`, `created_at`, `updated_at`) VALUES
+(1, 1, '1Kg Rice', '000001', 1, 150.00, 200.00, 250.00, 200.00, '2019-04-10', '2018-04-06', 1, '2018-04-06 06:47:30', '2019-03-12 14:32:50'),
+(2, 1, '2kg Flour', '000002', 1, 100.00, 180.00, 200.00, 150.00, '2019-04-10', '2018-04-06', 1, '2018-04-06 06:48:23', '2019-03-12 14:32:30');
 
 -- --------------------------------------------------------
 
@@ -128,6 +132,7 @@ CREATE TABLE `orderitems` (
   `item_id` int(11) NOT NULL,
   `quantity` int(11) NOT NULL,
   `price` float(15,2) NOT NULL,
+  `mode` varchar(255) DEFAULT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -136,9 +141,13 @@ CREATE TABLE `orderitems` (
 -- Dumping data for table `orderitems`
 --
 
-INSERT INTO `orderitems` (`id`, `order_id`, `item_id`, `quantity`, `price`, `created_at`, `updated_at`) VALUES
-(1, 1, 1, 2, 200.00, '2018-04-07 18:42:50', '2018-04-07 18:42:50'),
-(2, 1, 2, 3, 180.00, '2018-04-07 18:42:50', '2018-04-07 18:42:50');
+INSERT INTO `orderitems` (`id`, `order_id`, `item_id`, `quantity`, `price`, `mode`, `created_at`, `updated_at`) VALUES
+(1, 1, 1, 2, 200.00, NULL, '2018-04-07 18:42:50', '2018-04-07 18:42:50'),
+(2, 1, 2, 3, 180.00, NULL, '2018-04-07 18:42:50', '2018-04-07 18:42:50'),
+(3, 3, 1, 2, 250.00, 'Retail', '2019-03-12 14:34:29', '2019-03-12 14:34:29'),
+(4, 3, 2, 2, 200.00, 'Retail', '2019-03-12 14:34:29', '2019-03-12 14:34:29'),
+(5, 4, 1, 2, 200.00, 'Wholesale', '2019-03-12 14:35:34', '2019-03-12 14:35:34'),
+(6, 5, 2, 2, 150.00, 'Wholesale', '2019-03-12 14:39:44', '2019-03-12 14:39:44');
 
 -- --------------------------------------------------------
 
@@ -165,7 +174,11 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`id`, `date`, `amount`, `tax`, `amount_paid`, `payment_method`, `transaction_no`, `order_no`, `user_id`, `created_at`, `updated_at`) VALUES
-(1, '2018-04-07', 940.00, 150.40, 2000.00, 'Cash', NULL, '2018/04/07/0001', 1, '2018-04-07 18:42:49', '2018-04-07 18:42:49');
+(1, '2018-04-07', 940.00, 150.40, 2000.00, 'Cash', NULL, '2018/04/07/0001', 1, '2018-04-07 18:42:49', '2018-04-07 18:42:49'),
+(2, '2019-03-12', 900.00, 144.00, 1500.00, 'Cash', NULL, '2019/03/12/0002', 1, '2019-03-12 14:33:44', '2019-03-12 14:33:44'),
+(3, '2019-03-12', 900.00, 144.00, 1500.00, 'Cash', NULL, '2019/03/12/0003', 1, '2019-03-12 14:34:29', '2019-03-12 14:34:29'),
+(4, '2019-03-12', 400.00, 64.00, 500.00, 'Cash', NULL, '2019/03/12/0004', 1, '2019-03-12 14:35:34', '2019-03-12 14:35:34'),
+(5, '2019-03-12', 300.00, 48.00, 500.00, 'Cash', NULL, '2019/03/12/0005', 1, '2019-03-12 14:39:44', '2019-03-12 14:39:44');
 
 -- --------------------------------------------------------
 
@@ -235,7 +248,11 @@ INSERT INTO `stocks` (`id`, `item_id`, `order_id`, `quantity_in`, `quantity_out`
 (1, 2, NULL, 100, NULL, '2018-04-06', 1, '2018-04-06 11:25:19', '2018-04-06 11:39:41'),
 (2, 1, NULL, 100, NULL, '2018-04-06', 1, '2018-04-06 11:40:45', '2018-04-06 11:40:45'),
 (5, 1, 1, NULL, 2, '2018-04-07', 1, '2018-04-07 18:42:50', '2018-04-07 18:42:50'),
-(6, 2, 1, NULL, 3, '2018-04-07', 1, '2018-04-07 18:42:50', '2018-04-07 18:42:50');
+(6, 2, 1, NULL, 3, '2018-04-07', 1, '2018-04-07 18:42:50', '2018-04-07 18:42:50'),
+(7, 1, 3, NULL, 2, '2019-03-12', 1, '2019-03-12 14:34:29', '2019-03-12 14:34:29'),
+(8, 2, 3, NULL, 2, '2019-03-12', 1, '2019-03-12 14:34:29', '2019-03-12 14:34:29'),
+(9, 1, 4, NULL, 2, '2019-03-12', 1, '2019-03-12 14:35:34', '2019-03-12 14:35:34'),
+(10, 2, 5, NULL, 2, '2019-03-12', 1, '2019-03-12 14:39:44', '2019-03-12 14:39:44');
 
 -- --------------------------------------------------------
 
@@ -260,7 +277,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `remember_token`, `status`, `type`, `created_at`, `updated_at`) VALUES
-(1, 'superadmin', 'superadmin@gmail.com', '$2y$10$HvJrzAUvOBFRmaKp7IQGZuWPwdgnYzSlYIollvcUTitUdkR3ThCH6', 'Qy1pY3kpoD8Wz2QNWe4pL8SmmtI5HIrjSAiXs4ujEQL7uxbotBIk46aTLDVZ', 1, '', '2018-04-04 21:00:00', '2018-04-06 09:08:57');
+(1, 'superadmin', 'superadmin@gmail.com', '$2y$10$HvJrzAUvOBFRmaKp7IQGZuWPwdgnYzSlYIollvcUTitUdkR3ThCH6', 'Qy1pY3kpoD8Wz2QNWe4pL8SmmtI5HIrjSAiXs4ujEQL7uxbotBIk46aTLDVZ', 1, 'Admin', '2018-04-04 21:00:00', '2018-04-06 09:08:57');
 
 --
 -- Indexes for dumped tables
@@ -336,46 +353,56 @@ ALTER TABLE `users`
 --
 ALTER TABLE `categories`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
 --
 -- AUTO_INCREMENT for table `clients`
 --
 ALTER TABLE `clients`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
 --
 -- AUTO_INCREMENT for table `items`
 --
 ALTER TABLE `items`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
 -- AUTO_INCREMENT for table `orderitems`
 --
 ALTER TABLE `orderitems`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
 --
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
 --
 -- AUTO_INCREMENT for table `organizations`
 --
 ALTER TABLE `organizations`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
 --
 -- AUTO_INCREMENT for table `stocks`
 --
 ALTER TABLE `stocks`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+COMMIT;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
